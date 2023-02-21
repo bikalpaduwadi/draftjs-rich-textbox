@@ -1,0 +1,29 @@
+
+.toolbar-item{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1px;    
+  border: 1px solid;
+  cursor: pointer;;
+}
+
+.selected{
+  background-color: #2d2d2dd6;
+  border-radius: 0.2em;
+  color: #fff;
+}
+
+.toolbar-item:hover{
+  border-radius: 0.2em;
+  background-color: #cfcfcfd6;
+}
+
+.selected:hover{
+  background-color: #fdfdfd;
+  border-radius: 0.2em;
+  color: #2d2d2dd6;
+  border: 0.5px solid #2d2d2dd6;
+}

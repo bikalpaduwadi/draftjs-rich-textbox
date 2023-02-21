@@ -1,0 +1,32 @@
+{
+  "name": "vite-rich-text-box",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "classnames": "^2.3.2",
+    "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
+    "draftjs-utils": "^0.10.2",
+    "html-to-draftjs": "^1.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.1"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.3.1",
+    "@types/draft-js": "^0.11.10",
+    "@types/draftjs-to-html": "^0.8.1",
+    "@types/html-to-draftjs": "^1.4.0",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^3.1.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.0"
+  }
+}

@@ -1,0 +1,10 @@
+.rich-text-box-toolbar{
+  border: 1px solid;
+  border-color: #7e98d2;
+  width: 50%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  padding-left: 3px;
+  margin-top: 5px;
+}

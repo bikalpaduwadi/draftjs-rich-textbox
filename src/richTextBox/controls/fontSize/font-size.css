@@ -1,0 +1,37 @@
+.rte-fontsize-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  position: relative;
+  flex-wrap: wrap
+}
+.rte-fontsize-modal {
+  position: absolute;
+  top: 35px;
+  left: 5px;
+  /* width: 175px; */
+  height: 175px;
+  border: 1px solid #F1F1F1;
+  padding: 5px;
+  /* border-radius: 2px; */
+  z-index: 100;
+  background: white;
+  overflow: scroll;
+  /* box-shadow: 3px 3px 5px #BFBDBD; */
+  /* margin: 5px auto; */
+
+}
+
+.rte-fontsize-option {
+  border: 1px solid #F1F1F1;
+  padding: 3px 6px;
+}
+.rte-fontsize-option:hover {
+  box-shadow: 1px 2px 1px #BFBDBD;
+}
+.rte-fontsize-option:active {
+  box-shadow: -1px -2px 1px #BFBDBD;
+}
+.rte-fontsize-option-active {
+  box-shadow: 0px 0px 2px 2px #BFBDBD;
+}
