@@ -17,6 +17,7 @@ jobs:
 
   build:
     name: Build app
+    needs: [getEnv]
     runs-on: ubuntu-latest
     environment: ${{ env.env_name }}
     steps:
