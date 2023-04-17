@@ -64,11 +64,11 @@ jobs:
 
       - name: Test Deploy app
         run: |
-          bucket_name = ''
+          bucket_name=''
           if [[ "$env.env_name" == "dev" ]]; then
-            bucket_name = ${{ env.DEV_S3_URL }}
+            bucket_name=${{ env.DEV_S3_URL }}
           elif [[ "$env.env_name" == "test" ]]; then
-            bucket_name = ${{ env.TEST_S3_URL }}
+            bucket_name=${{ env.TEST_S3_URL }}
           fi
           # cd ${{ github.workspace }}/build
           # aws s3 sync . $bucket_name --delete
