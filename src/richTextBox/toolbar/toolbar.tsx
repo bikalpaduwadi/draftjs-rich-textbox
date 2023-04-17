@@ -17,7 +17,6 @@ const Toolbar = (props: any) => {
     const draftStyle = editorState.getCurrentInlineStyle();
     return draftStyle.has(style);
   };
-  //test message
   return (
     <div className='rich-text-box-toolbar'>
       {ToolbarIcons.map((item, i) => (

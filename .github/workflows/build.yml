@@ -1,0 +1,40 @@
+name: Build Application
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+jobs:
+  build:
+    name: Build app
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Use Node 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Set up environment
+        run: |
+          branch_ref=${{ github.head_ref || github.event.ref }}
+          branch_name=${branch_ref#refs/heads/}
+          if [[ "$branch_name" == "main" ]]; then
+            export ENVIRONMENT=production
+          elif [[ "$branch_name" == "staging" ]]; then
+            export ENVIRONMENT=staging
+          else
+            export ENVIRONMENT=dev
+          fi
+
+      - name: Read environment secrets
+        id: environment-secrets
+        run: echo "${{ secrets.TEST_KEY }}"
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Build Web app
+        run: yarn build
