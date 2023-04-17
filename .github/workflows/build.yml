@@ -14,12 +14,14 @@ jobs:
         id: set_env_name
         run: |
           echo "env_name=dev" >> $GITHUB_ENV
+    outputs:
+      env_name: '${{ env.env_name }}'
 
   build:
     name: Build app
     needs: [getEnv]
     runs-on: ubuntu-latest
-    environment: ${{ env.env_name }}
+    environment: ${{ needs.getEnv.outputs.env_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
