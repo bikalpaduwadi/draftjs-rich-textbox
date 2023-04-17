@@ -4,10 +4,23 @@ on:
   push:
     branches:
       - dev
+
+
 jobs:
+  getEnv:
+    name: Get env
+    runs-on: ubuntu-latest
+    steps:
+     - name: set env name
+        id: set_env_name
+        run: |
+          echo "env_name=dev" >> $GITHUB_ENV
+
+
   build:
     name: Build app
     runs-on: ubuntu-latest
+    environment: ${{env.env_name}}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -17,17 +30,17 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Set up environment
-        run: |
-          branch_ref=${{ github.head_ref || github.event.ref }}
-          branch_name=${branch_ref#refs/heads/}
-          if [[ "$branch_name" == "main" ]]; then
-            export ENVIRONMENT=production
-          elif [[ "$branch_name" == "staging" ]]; then
-            export ENVIRONMENT=staging
-          else
-            export ENVIRONMENT=dev
-          fi
+      # - name: Set up environment
+      #   run: |
+      #     branch_ref=${{ github.head_ref || github.event.ref }}
+      #     branch_name=${branch_ref#refs/heads/}
+      #     if [[ "$branch_name" == "main" ]]; then
+      #       export ENVIRONMENT=production
+      #     elif [[ "$branch_name" == "staging" ]]; then
+      #       export ENVIRONMENT=staging
+      #     else
+      #       export ENVIRONMENT=dev
+      #     fi
 
       - name: Read environment secrets
         id: environment-secrets
