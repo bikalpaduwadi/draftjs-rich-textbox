@@ -5,17 +5,15 @@ on:
     branches:
       - dev
 
-
 jobs:
   getEnv:
     name: Get env
     runs-on: ubuntu-latest
     steps:
-     - name: set env name
+      - name: set env name
         id: set_env_name
         run: |
           echo "env_name=dev" >> $GITHUB_ENV
-
 
   build:
     name: Build app
