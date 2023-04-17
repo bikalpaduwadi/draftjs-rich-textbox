@@ -4,16 +4,25 @@ on:
   push:
     branches:
       - dev
+      - test
+env:
+  DEV_S3_URL: s3://com.dev.us-east-1.app.website
+  TEST_S3_URL: s3://com.test.us-east-1.app.website
 
 jobs:
   getEnv:
     name: Get env
     runs-on: ubuntu-latest
     steps:
-      - name: set env name
-        id: set_env_name
+      - name: Set up environment name
         run: |
-          echo "env_name=dev" >> $GITHUB_ENV
+          branch_ref=${{ github.head_ref || github.event.ref }}
+          branch_name=${branch_ref#refs/heads/}
+          if [[ "$branch_name" == "test" ]]; then
+            echo "env_name=test" >> $GITHUB_ENV
+          elif [[ "$branch_name" == "dev" ]]; then
+            echo "env_name=dev" >> $GITHUB_ENV
+          fi
     outputs:
       env_name: '${{ env.env_name }}'
 
@@ -43,11 +52,27 @@ jobs:
       #       export ENVIRONMENT=dev
       #     fi
 
+      - name: Set environment name
+        run: |
+          echo "env_name=${needs.getEnv.outputs.env_name}" >> $GITHUB_ENV
+
       - name: Read environment secrets
         id: environment-secrets
         run: |
           echo "${{ secrets.TEST_KEY }}"
           echo "${{ vars.KEY_VAR }}"
+
+      - name: Test Deploy app
+        run: |
+          bucket_name = ''
+          if [[ "$env.env_name" == "dev" ]]; then
+            bucket_name = ${{ env.DEV_S3_URL }}
+          elif [[ "$env.env_name" == "test" ]]; then
+            bucket_name = ${{ env.TEST_S3_URL }}
+          fi
+          # cd ${{ github.workspace }}/build
+          # aws s3 sync . $bucket_name --delete
+          echo $bucket_name
 
       - name: Install Dependencies
         run: yarn
