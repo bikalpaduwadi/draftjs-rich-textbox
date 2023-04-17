@@ -18,7 +18,7 @@ jobs:
   build:
     name: Build app
     runs-on: ubuntu-latest
-    environment: ${{env.env_name}}
+    environment: ${{ env.env_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
