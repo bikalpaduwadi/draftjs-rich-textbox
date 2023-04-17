@@ -72,7 +72,8 @@ jobs:
           fi
           # cd ${{ github.workspace }}/build
           # aws s3 sync . $bucket_name --delete
-          echo $bucket_name
+          echo "$bucket_name"
+          echo "${{env.DEV_S3_URL}}"
 
       - name: Install Dependencies
         run: yarn
