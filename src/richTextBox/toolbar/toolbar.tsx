@@ -1,10 +1,10 @@
-import ToolbarIcons from "./toolbarIcons";
-import { RichUtils } from "draft-js";
-import ToolbarItem from "./toolbarItem";
-import "./toolbar.css";
+import ToolbarIcons from './toolbarIcons';
+import { RichUtils } from 'draft-js';
+import ToolbarItem from './toolbarItem';
+import './toolbar.css';
 // import FontSize from "./options/fontSize";
-import ColorPicker from "../controls/colorPicker/colortPicker";
-import FontSize from "../controls/fontSize/fontSize";
+import ColorPicker from '../controls/colorPicker/colortPicker';
+import FontSize from '../controls/fontSize/fontSize';
 
 const Toolbar = (props: any) => {
   const { editorState, updateEditorState } = props;
@@ -17,9 +17,9 @@ const Toolbar = (props: any) => {
     const draftStyle = editorState.getCurrentInlineStyle();
     return draftStyle.has(style);
   };
-
+  //test message
   return (
-    <div className="rich-text-box-toolbar">
+    <div className='rich-text-box-toolbar'>
       {ToolbarIcons.map((item, i) => (
         <ToolbarItem
           key={`${item.label}-${i}`}
