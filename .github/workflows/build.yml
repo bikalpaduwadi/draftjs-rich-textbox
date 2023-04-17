@@ -45,7 +45,9 @@ jobs:
 
       - name: Read environment secrets
         id: environment-secrets
-        run: echo "${{ secrets.TEST_KEY }}"
+        run: |
+          echo "${{ secrets.TEST_KEY }}"
+          echo "${{ vars.KEY_VAR }}"
 
       - name: Install Dependencies
         run: yarn
