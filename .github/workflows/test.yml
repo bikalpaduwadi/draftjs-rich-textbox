@@ -22,6 +22,7 @@ jobs:
       - name: Create an artifact file
         run: |
           echo hello >> file.txt
+          echo hi >> file.txt
 
       - name: upload Artifact
         uses: actions/upload-artifact@v2
@@ -45,7 +46,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: build.yml
           name: ${{ env.ARTIFACT_NAME }}
-          name_is_regexp: true
+          # name_is_regexp: true
           run_number: ${{ github.event.pull_request.number }}
           workflow_conclusion: completed
           path: artifact
