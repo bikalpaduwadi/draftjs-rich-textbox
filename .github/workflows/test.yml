@@ -1,0 +1,25 @@
+name: Test Application
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [synchronize, opened, closed]
+    branches:
+      - dev
+      - test
+
+jobs:
+  test_build:
+    if: '!github.event.pull_request.merged'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get run number
+        run: |
+          echo "Run number: ${{ github.event.pull_request.number }}"
+
+  release_build:
+    runs-on: 'ubuntu-latest'
+    if: github.event.pull_request.merged
+    steps:
+      - name: Get run number
+        run: |
+          echo "Run number (release): ${{ github.event.pull_request.number }}"
